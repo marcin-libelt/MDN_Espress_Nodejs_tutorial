@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var moment = require('moment');
 var BookInstanceSchema = new Schema(
   {
     book: { type: Schema.Types.ObjectId, ref: 'Book', required: true }, //reference to the associated book
@@ -8,6 +9,13 @@ var BookInstanceSchema = new Schema(
     due_back: {type: Date, default: Date.now}
   }
 );
+
+// Virtual for bookinstance's URL
+BookInstanceSchema
+.virtual('due_back_formatted')
+.get(function () {
+  return moment(this.due_back).format('MMMM Do, YYYY');
+});
 
 // Virtual for bookinstance's URL
 BookInstanceSchema

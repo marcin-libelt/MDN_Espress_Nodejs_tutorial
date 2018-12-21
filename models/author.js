@@ -26,7 +26,7 @@ AuthorSchema
 AuthorSchema
 .virtual('url')
 .get(function(){
-    return '/catalog/author' + this._id;
+    return '/catalog/author/' + this._id;
 });
 
 module.exports = mongoose.model('Author', AuthorSchema);
