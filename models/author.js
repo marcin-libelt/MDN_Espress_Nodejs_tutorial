@@ -19,9 +19,15 @@ AuthorSchema
 
 // Virtual for author's lifespan
 AuthorSchema
-.virtual('lifespan')
+.virtual('lifespan_formatted')
 .get(function(){
     return `${moment(this.date_of_birth).format('MMMM Do, YYYY')} - ${moment(this.date_of_death).format('MMMM Do, YYYY')}`;
+});
+
+AuthorSchema
+.virtual('lifespan')
+.get(function(){
+    return (this.date_of_death.getYear() - this.date_of_death.getYear()).toString();
 });
 
 AuthorSchema
